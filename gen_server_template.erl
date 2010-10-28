@@ -1,5 +1,5 @@
 -module(gen_server_template).
--export([start/0, stop/0]).
+-export([start_link/0, stop/0]).
 -behaviour(gen_server).
 
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
@@ -8,8 +8,8 @@
 %%%                              Public API                                  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-start() ->
-    gen_server:start({local, ?MODULE}, ?MODULE, [], []).
+start_link() ->
+    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 stop() ->
     gen_server:call(?MODULE, stop).
 
