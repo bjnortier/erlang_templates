@@ -21,20 +21,22 @@ init([]) ->
 
 handle_call(stop, _From, State) ->
     {stop, normal, stopped, State};
-handle_call(_Request, _From, State) ->
+
+handle_call(Msg, _From, State) ->
+    lager:warning("Unknown call to ~p: ~p", [?MODULE, Msg]),
     {reply, ok, State}.
 
-handle_cast(_Msg, State) ->
+handle_cast(Msg, State) ->
+    lager:warning("Unknown cast to ~p: ~p", [?MODULE, Msg]),
     {noreply, State}.
 
-handle_info(_Info, State) ->
+handle_info(Info, State) ->
+    lager:warning("Unknown info to ~p: ~p", [?MODULE, Info]),
     {noreply, State}.
 
 terminate(_Reason, _State) ->
+    lager:info("Terminating ~p", [?MODULE]),
     ok.
-
-code_change(_OldVsn, State, _Extra) ->
-    {ok, State}.
 
 
 
